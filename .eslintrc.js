@@ -8,5 +8,9 @@
 'use strict';
 
 module.exports = {
-	extends: 'ckeditor5'
+  extends: 'ckeditor5',
+  rules: {
+    'space-in-parens': 0,
+    indent: [2, 2]
+  }
 };

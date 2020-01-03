@@ -5,5 +5,23 @@
 
 /* Give the block toolbar button some space, moving it a few pixels away from the editable area. */
 .ck.ck-block-toolbar-button {
-	transform: translateX( calc(-1 * var(--ck-spacing-large)) );
+  transform: translateX(calc(-1 * var(--ck-spacing-large)));
+}
+
+.ck.ck-content[contenteditable=true] {
+  border: none;
+}
+
+.ck.ck-content[contenteditable=true].ck-focused {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.ck.ck-button {
+  cursor: pointer;
+}
+
+.ck a {
+  color: var(--ck-color-image-caption-text);
 }

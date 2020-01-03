@@ -1,41 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<title>CKEditor 5 – balloon block editor build – development sample</title>
-	<style>
-		body {
-			max-width: 800px;
-			margin: 20px auto;
-		}
-	</style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      CKEditor 5 – balloon block editor build – development sample
+    </title>
+    <style>
+      body {
+        max-width: 800px;
+        margin: 20px auto;
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/rainbow.min.css" integrity="sha256-pkyjoAgF+MR0ASX6B+pzaq2TowuUq2gLqBPvemJetc4=" crossorigin="anonymous" />
+  </head>
 
-<h1>CKEditor 5 – balloon block editor build – development sample</h1>
+  <body>
+    <h1>CKEditor 5 – balloon block editor build – development sample</h1>
 
-<div id="editor">
-	<h2>Sample</h2>
+    <div id="editor"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>
+    <script src="../build/ckeditor.js"></script>
+    <script src="../node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js"></script>
+    <script>
+      BalloonEditor.create(document.querySelector('#editor'), {
+        initialData: `
+          <h2>Sample</h2>
 
-	<p>This is an instance of the <a href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#balloon-editor">balloon block editor build</a>.</p>
+          <p>
+            This is an instance of the
+            <a href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/overview.html#balloon-editor">balloon
+              block editor build</a>.
+          </p>
 
-	<figure class="image">
-		<img src="../tests/manual/sample.jpg" alt="Autumn fields" />
-	</figure>
+          <figure class="image">
+            <img src="../tests/manual/sample.jpg" alt="Autumn fields" />
+          </figure>
 
-	<p>You can use this sample to validate whether your <a href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/development/custom-builds.html">custom build</a> works fine.</p>
-</div>
-
-<script src="../build/ckeditor.js"></script>
-<script>
-	BalloonEditor.create( document.querySelector( '#editor' ) )
-		.then( editor => {
-			window.editor = editor;
-		} )
-		.catch( error => {
-			console.error( 'There was a problem initializing the editor.', error );
-		} );
-</script>
-
-</body>
+          <p>
+            You can use this sample to validate whether your
+            <a href="https://ckeditor.com/docs/ckeditor5/latest/builds/guides/development/custom-builds.html">custom
+              build</a>
+            works fine.
+          </p>
+          `
+      })
+        .then(editor => {
+          window.editor = editor;
+          CKEditorInspector.attach( editor );
+        })
+        .catch(error => {
+          console.error('There was a problem initializing the editor.', error);
+        });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre code').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      });
+      </script>
+  </body>
 </html>
